@@ -7,6 +7,9 @@ import { CreateTableUser1708129777628 } from './migrations/1708129777628-createT
 import { CreateTableState1708132694422 } from './migrations/1708132694422-createTableState';
 import { CreateTableAdress1708132712154 } from './migrations/1708132712154-createTableAdress';
 import { CreateTableCity1708132703817 } from './migrations/1708132703817-createTableCity';
+import { StateModule } from './state/state.module';
+import { CityModule } from './city/city.module';
+import { AdressModule } from './adress/adress.module';
 
 
 @Module({
@@ -24,7 +27,7 @@ import { CreateTableCity1708132703817 } from './migrations/1708132703817-createT
     migrations: [CreateTableUser1708129777628, CreateTableState1708132694422, CreateTableAdress1708132712154, CreateTableCity1708132703817],
     migrationsRun: true
   })
-  ,UserModule],
+  ,UserModule, StateModule, CityModule, AdressModule],
   controllers: [],
   providers: [],
 })
