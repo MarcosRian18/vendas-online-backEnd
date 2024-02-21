@@ -3,6 +3,9 @@ import { MigrationInterface, QueryRunner } from "typeorm";
 export class InsertInState1708147741103 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+
+        queryRunner.query(`ALTER TABLE state ADD COLUMN uf VARCHAR(2);`);
+
         queryRunner.query(`
             INSERT INTO state("id", "name", "uf") VALUES (1, 'Acre', 'AC');
             INSERT INTO state("id", "name", "uf") VALUES (2, 'Alagoas', 'AL');
@@ -36,7 +39,7 @@ export class InsertInState1708147741103 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         queryRunner.query(`
-        DELETE FROM publicDecrypt.state;`
+        DELETE FROM public.state;`
         )
     }
 

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './user/interfaces/user.interface';
+import { UserEntity } from './user/entities/user.interface';
 import { CreateTableUser1708129777628 } from './migrations/1708129777628-createTableUser';
 import { CreateTableState1708132694422 } from './migrations/1708132694422-createTableState';
 import { CreateTableAdress1708132712154 } from './migrations/1708132712154-createTableAdress';
@@ -10,6 +10,12 @@ import { CreateTableCity1708132703817 } from './migrations/1708132703817-createT
 import { StateModule } from './state/state.module';
 import { CityModule } from './city/city.module';
 import { AdressModule } from './adress/adress.module';
+import { InsertInState1708147741103 } from './migrations/1708147741103-insertInState';
+import { InsertInCity1708147751045 } from './migrations/1708147751045-insertInCity';
+import { adressEntity } from './adress/entities/adress.entity';
+import { cityEntity } from './city/entities/city.entity';
+import { stateEntity } from './state/entities/state.entity';
+//import { AlterTableState1708151288218 } from './migrations/1708151288218-alterTableState';
 
 
 @Module({
@@ -23,8 +29,8 @@ import { AdressModule } from './adress/adress.module';
     password: process.env.DB_PASSWORD,
     port: Number(process.env.DB_PORT),
     username: process.env.DB_USERNAME,
-    entities: [UserEntity],
-    migrations: [CreateTableUser1708129777628, CreateTableState1708132694422, CreateTableAdress1708132712154, CreateTableCity1708132703817],
+    entities: [UserEntity, adressEntity, cityEntity, stateEntity],
+     migrations: [CreateTableUser1708129777628,CreateTableState1708132694422, CreateTableCity1708132703817,CreateTableAdress1708132712154,InsertInState1708147741103,InsertInCity1708147751045],
     migrationsRun: true
   })
   ,UserModule, StateModule, CityModule, AdressModule],
