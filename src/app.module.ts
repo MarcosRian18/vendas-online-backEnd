@@ -17,6 +17,7 @@ import { cityEntity } from './city/entities/city.entity';
 import { stateEntity } from './state/entities/state.entity';
 //import { AlterTableState1708151288218 } from './migrations/1708151288218-alterTableState';
 import { CacheModule } from './cache/cache.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -34,7 +35,7 @@ import { CacheModule } from './cache/cache.module';
      migrations: [CreateTableUser1708129777628,CreateTableState1708132694422, CreateTableCity1708132703817,CreateTableAdress1708132712154,InsertInState1708147741103,InsertInCity1708147751045],
     migrationsRun: true
   })
-  ,UserModule, StateModule, CityModule, AdressModule, CacheModule],
+  ,UserModule, StateModule, CityModule, AdressModule, CacheModule, AuthModule],
   controllers: [],
   providers: [],
 })

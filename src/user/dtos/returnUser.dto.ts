@@ -16,7 +16,6 @@ export class ReturnUserDto {
         this.email = userEntity.email;
         this.phone = userEntity.phone;
         this.cpf = userEntity.cpf;
-        this.password = userEntity.password; // Assuming password should be copied
 
         this.adresses = userEntity.adresses ? userEntity.adresses.map((address) => new ReturnAdressDto(address)) : undefined;
     }
