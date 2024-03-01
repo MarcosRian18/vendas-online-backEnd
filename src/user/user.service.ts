@@ -39,4 +39,19 @@ export class UserService {
 
         return user;
     }
+
+    async getUserByIdUsingReferences(user_id: number): Promise<UserEntity> {
+        return this.userRepository.findOne({
+            where: {
+                id: user_id
+            },
+            relations: {
+                adresses: {
+                    city: {
+                        state: true,
+                    }
+                }
+            }
+        })
+    }
 }
