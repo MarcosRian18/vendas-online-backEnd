@@ -18,6 +18,10 @@ import { stateEntity } from './state/entities/state.entity';
 //import { AlterTableState1708151288218 } from './migrations/1708151288218-alterTableState';
 import { CacheModule } from './cache/cache.module';
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './guards/roles.guard';
+import { JwtModule } from '@nestjs/jwt';
+import { AlterTableUser1710607035686 } from './migrations/1710607035686-alter-table-user';
 
 
 @Module({
@@ -32,11 +36,14 @@ import { AuthModule } from './auth/auth.module';
     port: Number(process.env.DB_PORT),
     username: process.env.DB_USERNAME,
     entities: [UserEntity, adressEntity, cityEntity, stateEntity],
-     migrations: [CreateTableUser1708129777628,CreateTableState1708132694422, CreateTableCity1708132703817,CreateTableAdress1708132712154,InsertInState1708147741103,InsertInCity1708147751045],
+     migrations: [CreateTableUser1708129777628,CreateTableState1708132694422, CreateTableCity1708132703817,CreateTableAdress1708132712154,InsertInState1708147741103,InsertInCity1708147751045,AlterTableUser1710607035686],
     migrationsRun: true
   })
-  ,UserModule, StateModule, CityModule, AdressModule, CacheModule, AuthModule],
+  ,UserModule, StateModule, CityModule, AdressModule, CacheModule, AuthModule, JwtModule],
   controllers: [],
-  providers: [],
+  providers: [{
+    provide: APP_GUARD,
+    useClass: RolesGuard
+  }],
 })
 export class AppModule {}
